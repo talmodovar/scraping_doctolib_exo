@@ -12,6 +12,8 @@ from selenium.webdriver.common.keys import Keys
 
 from webdriver_manager.firefox import GeckoDriverManager
 import time
+import csv
+
 
 service = Service(GeckoDriverManager().install())
 driver = webdriver.Firefox(service=service)
@@ -66,7 +68,26 @@ time.sleep(2)
 search_bouton.click()
 time.sleep(3)
 
-#
+
+
+#Récolte information médecins
+
+cards = driver.find_elements(By.CSS_SELECTOR,".dl-card-content")
+time.sleep(6)
+
+result_list = []
+result_list.append("informations_en_vrac")
+
+for card in cards :
+    card_text = card.text
+    print(str(card_text))
+    result_list.append(str(card_text))  
+    print("#" * 30)
+
+
+
+
+
 
 time.sleep(15)
 
@@ -78,3 +99,10 @@ except Exception as e:
     print("Aucun résultat trouvé ou sélecteur incorrect:", e)
 
 driver.quit()
+
+
+with open("result_doctolib.csv", "w") as f:
+    writer = csv.writer(f)
+    writer.writerows(result_list)
+    
+print("CSV Exporté")
