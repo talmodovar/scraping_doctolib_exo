@@ -9,6 +9,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+
 from webdriver_manager.firefox import GeckoDriverManager
 import time
 
@@ -54,13 +55,19 @@ except:
 
 time.sleep(2)
 place_input = driver.find_element(By.CSS_SELECTOR, "input.searchbar-input.searchbar-place-input")
+search_bouton = driver.find_element(By.CSS_SELECTOR, ".Tappable-inactive.dl-button-primary.searchbar-submit-button.dl-button.dl-button-size-medium")
 place_input.clear()
 place_input.send_keys("75001")
 time.sleep(2)
 
-#
-search_bouton = driver.find_element(By.CSS_SELECTOR, ".Tappable-inactive.dl-button-primary.searchbar-submit-button.dl-button.dl-button-size-medium")
+place_input.send_keys(Keys.TAB)
+time.sleep(2)
+
 search_bouton.click()
+time.sleep(3)
+
+#
+
 time.sleep(15)
 
 #
