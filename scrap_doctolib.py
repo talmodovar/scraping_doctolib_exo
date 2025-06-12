@@ -16,6 +16,35 @@ service = Service(GeckoDriverManager().install())
 driver = webdriver.Firefox(service=service)
 driver.get("https://www.doctolib.fr/")
 
+# =============================================================================
+# #Question pour utilisateurs
+# 
+# print("=== Recherche de médecin ===")
+# 
+# nb_resultats = input("Nombre de résultats maximum à afficher (ex : 10) : ")
+# 
+# date_debut = input("Date de début (JJ/MM/AAAA) : ")
+# date_fin = input("Date de fin (JJ/MM/AAAA) : ")
+# 
+# requete_medicale = input("Requête médicale (ex : dermatologue, généraliste) : ")
+# 
+# type_assurance = input("Type dʼassurance (secteur 1, secteur 2, non conventionné) : ")
+# 
+# type_consultation = input("Type de consultation (visio ou sur place) : ")
+# 
+# prix_min = input("Prix minimum (€) : ")
+# prix_max = input("Prix maximum (€) : ")
+# 
+# adresse_mot_cle = input("Mot-clé dans lʼadresse (ex: 75015, Boulogne) : ")
+# 
+#
+# 
+# =============================================================================
+
+
+
+# Proegramme sans remplacer les variables, par les réponses utilisateurs
+
 try:
     time.sleep(3)
     reject_btn = driver.find_element(By.ID, "didomi-notice-disagree-button")
@@ -29,12 +58,12 @@ place_input.clear()
 place_input.send_keys("75001")
 time.sleep(2)
 
-# CORRIGÉ ICI: ajout des points pour chaque classe!
+#
 search_bouton = driver.find_element(By.CSS_SELECTOR, ".Tappable-inactive.dl-button-primary.searchbar-submit-button.dl-button.dl-button-size-medium")
 search_bouton.click()
-time.sleep(5)
+time.sleep(15)
 
-# Tu peux aussi utiliser un try/except ici pour éviter un crash si pas de résultat
+#
 try:
     total_results = driver.find_element(By.CSS_SELECTOR, "div[data-test='total-number-of-results']")
     print("Found results count: ", total_results.text)
